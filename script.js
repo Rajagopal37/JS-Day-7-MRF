@@ -8,16 +8,87 @@
     let apiResult = JSON.parse(api.response);
     console.log(apiResult)
 
+
+
+
+
+
+//-------------5.Print the country that uses US dollars as currency-----------------
+    
+    // let countryUSD = apiResult.filter(usd => {
+    //   const currency = Object.values(usd.currencies).includes('USD');
+    //   console.log(currency)
+    //   return currency;
+    // } )
+    // console.log(countryUSD)
+
+    // let curr = apiResult.filter(a => a.currencies.USD);
+    // console.log(curr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //---------------1.  Get all the countries from Asia continent /region using Filter function -------------------------------
+
+
     let asia  = apiResult.filter(asia=>asia.region === "Asia").sort((a,b)=>a.name.common.localeCompare(b.name.common))
-    for ( let i=0; i<asia.length; i++) {
+
+      for ( let i=0; i<asia.length; i++) {
       let asiaName = asia[i].name.common ; 
       console.log(`Asia Continent Country  ${(i+1)} . ${asiaName} `);
       document.getElementById("1").innerHTML += `${(i+1)}. ${asiaName} ${'<br>'}`}
    
-  }
 
-  //--------------2.Get all the countries with a population of less than 2 lakhs using Filter function---------------------------------
+
+
+//--------------2.Get all the countries with a population of less than 2 lakhs using Filter function---------------------------------
+
+  let pop = apiResult.filter(result => result.population < 200000).sort((a,b)=>a.name.common.localeCompare(b.name.common));
+  // console.log(pop)
+  for (let j=0; j<pop.length; j++) {
+    let popConName = pop[j].name.common;
+    let popCount = pop[j].population;
+    console.log(j+1, popConName, popCount)
+    document.getElementById('2').innerHTML += `${j+1}.  ${popConName},          Population : ${popCount} ${'<br>'}`
+  }
+}
+
+//--------------3.Print the following details name, capital, flag, using forEach function--------------------------
+
+
+
+
+//-------------4.Print the total population of countries using reduce function------------
+
+
+
+
+
+
+  
+  
+  
+  
+      // // Problem 5: Print the country that uses US dollars as currency
+      // const usDollarCountries = apiResult.filter(country => {
+      //   const currencies = Object.values(country.currencies).includes('USD');
+      //   console.log('Countries that use US dollars as currency:', usDollarCountries);
+      //   return currencies;
+      // }
+      // );
+      // console.log(usDollarCountries)
+      
+    
 
 
 
@@ -32,10 +103,6 @@
 //   .then(data => {
 //     
 
-//     // Problem 2: Get all countries with a population of less than 2 lakhs using JS Filter function
-//     const lessThan2LakhPopulation = data.filter(country => country.population < 200000);
-//     console.log('Countries with population less than 2 lakhs:', lessThan2LakhPopulation);
-
 //     // Problem 3: Print name, capital, flag of each country using JS forEach function
 //     data.forEach(country => {
 //       console.log('Name:', country.name.common);
@@ -43,15 +110,13 @@
 //       console.log('Flag:', country.flags.svg);
 //     });
 
+
+
 //     // Problem 4: Print the total population of countries using JS reduce function
 //     const totalPopulation = data.reduce((acc, country) => acc + country.population, 0);
 //     console.log('Total population of countries:', totalPopulation);
 
-//     // Problem 5: Print the country that uses US dollars as currency
-//     const usDollarCountries = data.filter(country => {
-//       const currencies = Object.values(country.currencies);
-//       return currencies.includes('USD');
-//     });
-//     console.log('Countries that use US dollars as currency:', usDollarCountries);
-//   })
+
+
 //   .catch(error => console.error('Error fetching data:', error));
+
