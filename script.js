@@ -1,5 +1,23 @@
 
+  const api = new XMLHttpRequest ();
+  api.open("GET","https://restcountries.com/v3.1/all")
+  api.send();
 
+  api.onload = function () {
+     
+    let apiResult = JSON.parse(api.response);
+    console.log(apiResult)
+
+//---------------1.  Get all the countries from Asia continent /region using Filter function -------------------------------
+    let asia  = apiResult.filter(asia=>asia.region === "Asia").sort((a,b)=>a.name.common.localeCompare(b.name.common))
+    for ( let i=0; i<asia.length; i++) {
+      let asiaName = asia[i].name.common ; 
+      console.log(`Asia Continent Country  ${(i+1)} . ${asiaName} `);
+      document.getElementById("1").innerHTML += `${(i+1)}. ${asiaName} ${'<br>'}`}
+   
+  }
+
+  //--------------2.Get all the countries with a population of less than 2 lakhs using Filter function---------------------------------
 
 
 
@@ -12,9 +30,7 @@
 // fetch('https://restcountries.com/v3.1/all')
 //   .then(response => response.json())
 //   .then(data => {
-//     // Problem 1: Get all countries from Asia continent/region using JS Filter function
-//     const asiaCountries = data.filter(country => country.region === 'Asia');
-//     console.log('Countries from Asia:', asiaCountries);
+//     
 
 //     // Problem 2: Get all countries with a population of less than 2 lakhs using JS Filter function
 //     const lessThan2LakhPopulation = data.filter(country => country.population < 200000);
