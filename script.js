@@ -9,16 +9,8 @@
     console.log(apiResult)
 
 
-
-
-
     
-    
-
-
-
-    
-    //---------------1.  Get all the countries from Asia continent /region using Filter function -------------------------------
+//---------------1.  Get all the countries from Asia continent /region using Filter function -------------------------------
     
     
     let asia  = apiResult.filter(asia=>asia.region === "Asia").sort((a,b)=>a.name.common.localeCompare(b.name.common))
@@ -61,50 +53,20 @@ let details = apiResult.forEach((e,index) => {
 
 let totalPopulation = apiResult.reduce((acc,ele)=> acc+ele.population ,0);
 console.log("The total population of countries is " + totalPopulation)
+document.getElementById("4").innerHTML= ("The total population of countries is " + totalPopulation);
 
 
 //--------------5. Print the country that uses US dollars as currency-----------------=
 
 
+const usdCountries = data.filter(country => {
+  const currencies = country.currencies;
+  return currencies && Object.values(currencies).includes("USD");
+});
 
-
-
-
-
-//-------------5.Print the country that uses US dollars as currency-----------------
-    
-    // let countryUSD = apiResult.filter(usd => {
-    //   const currency = Object.values(usd.currencies).includes('USD');
-    //   console.log(currency)
-    //   return currency;
-    // } )
-    // console.log(countryUSD)
-
-    // let curr = apiResult.filter(a => a.currencies.USD);
-    // console.log(curr)
-
-
-
-
-
-
-
-
-// const usDollarCountries = apiResult.filter(country => {
-
-
-  
-
-  
-
-  //   const currencies = Object.values(country.currencies).includes('USD');
-  //   console.log('Countries that use US dollars as currency:', usDollarCountries);
-  //   return currencies;
-  // }
-  // );
-  // console.log(usDollarCountries)
-  
-  
+usdCountries.forEach(country => {
+  console.log(country.name.common);
+});
 
 
 }
