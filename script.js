@@ -59,14 +59,17 @@ document.getElementById("4").innerHTML= ("The total population of countries is "
 //--------------5. Print the country that uses US dollars as currency-----------------=
 
 
-const usdCountries = data.filter(country => {
-  const currencies = country.currencies;
-  return currencies && Object.values(currencies).includes("USD");
-});
+      let usd = apiResult.filter(ele=> {
+        const usdCountry = ele.currencies;
+        
+        return usdCountry && usdCountry.USD
 
-usdCountries.forEach(country => {
-  console.log(country.name.common);
-});
+      })
 
+      let usdName = usd.forEach((item, index) => {
+        console.log(`${index+1}. Country Name : ${item.name.common}, USD`)
+        document.getElementById('5').innerHTML += (`${index+1}. Country Name : ${item.name.common}, USD ${'<br>'}`)
+      })
+      
 
 }
